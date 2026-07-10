@@ -1,5 +1,11 @@
 package main
 
 func main() {
-	Hello();
+	Argparser();
 }
+
+/*
+Create a helper function
+get the args parse using argparser
+then do whats told
+*/
