@@ -12,7 +12,7 @@ type Parser struct {
 	Del       string
 }
 
-func Argparser() Parser {
+func Argparser() (Parser, error) {
 	parser := argparse.NewParser(os.Args[0], "Github Api wrapper");
 	docs := parser.String("u", "upload", &argparse.Options{
 		Required: false,
@@ -36,6 +36,7 @@ func Argparser() Parser {
 
 	if *docs == "" && *del == "" && *download == "" {
 		fmt.Print(parser.Usage(nil));
+		return Parser{}, fmt.Errorf("No instructions given");
 	}
 
 	fmt.Println(*docs, *del, *download);
@@ -44,6 +45,6 @@ func Argparser() Parser {
 		Upload: *docs,
 		Download: *download,
 		Del: *del,
-	};
+	}, nil;
 }
 
